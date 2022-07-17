@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  background-color: #261c58;
+  align-items: center;
+  padding: 0.5rem;
+  color: #efefef;
+}
+
+.header > * {
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.header > h4 {
+  margin-left: 2rem;
+  margin-top: 5px;
+}
