@@ -8,5 +8,6 @@
 
 body {
   font-family: "Poppins", sans-serif;
-  background-color: rgb(227, 222, 222);
+  background-color: #261c58;
+  overflow-x: hidden;
 }

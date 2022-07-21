@@ -1,5 +1,6 @@
 import Navbar from "./Components/Navbar";
-import Banner from "./Components/Banner"
+import Banner from "./Components/Banner";
+import List from "./Components/List";
 import "./App.css";
 
 const App = () => {
@@ -7,6 +8,7 @@ const App = () => {
     <>
       <Navbar />
       <Banner />
+      <List />
     </>
   );
 };

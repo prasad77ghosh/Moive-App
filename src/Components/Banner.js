@@ -17,8 +17,8 @@ export default class Banner extends Component {
     return (
       <>
         {movie === "" ? (
-          <div class="container">
-            <div class="loader" />
+          <div className="container">
+            <div className="loader" />
             <h3>Loading...</h3>
           </div>
         ) : (
