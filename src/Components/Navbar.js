@@ -5,8 +5,8 @@ export default class Navbar extends Component {
   render() {
     return (
         <div className="header">
-            <h2>Moives App</h2>
-            <h4>Favourites</h4>
+            <h3>Moives App</h3>
+            <h6>Favourites</h6>
         </div>
     )
   }

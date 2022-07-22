@@ -7,7 +7,7 @@ export default class Banner extends Component {
     super();
 
     this.state = {
-      idx: Math.floor(Math.random() * 15 + 1),
+      idx: Math.floor(Math.random() * 20 + 1),
     };
   }
 
