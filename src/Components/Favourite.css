@@ -1,0 +1,47 @@
+.fav-cont {
+  margin-top: 3rem;
+  margin-left: 2rem;
+}
+
+.fav-cont li {
+  background-color: #181236;
+  color: white;
+  border: 1px solid white;
+  cursor: pointer;
+}
+
+.fav-table {
+  margin-top: 3rem;
+  margin-left: 2rem;
+}
+
+.input-cont {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.input-cont input {
+  background-color: #181236;
+  color: white;
+}
+
+.table {
+  color: white;
+}
+
+.table-cont {
+  margin-top: 1.5rem;
+}
+
+.fav-img {
+  width: 5rem;
+  margin-right: 1.5rem;
+  cursor: pointer;
+}
+
+.fav-img:hover {
+  width: 15rem;
+  transition: 0.5s;
+  transform: scale(1.3);
+}
