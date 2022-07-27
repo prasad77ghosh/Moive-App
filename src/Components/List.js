@@ -12,6 +12,7 @@ export default class List extends Component {
       parr: [1],
       currentPage: 1,
       movies: [],
+      favourites: [],
     };
   }
 
@@ -85,6 +86,24 @@ export default class List extends Component {
     }
   };
 
+  handleFavourites = (movie) => {
+    let localStorageMovies = JSON.parse(
+      localStorage.getItem("MyFavMoives") || "[]"
+    );
+    if (this.state.favourites.includes(movie.id)) {
+      localStorageMovies = localStorageMovies.filter((m) => m.id !== movie.id);
+    } else {
+      localStorageMovies.push(movie);
+    }
+
+    localStorage.setItem("MyFavMoives", JSON.stringify(localStorageMovies));
+    console.log(localStorageMovies);
+    let temp = localStorageMovies.map((movie) => movie.id);
+    this.setState({
+      favourites: [...temp],
+    });
+  };
+
   render() {
     // let movie = movies.results;
     // let movie = "";
@@ -117,7 +136,11 @@ export default class List extends Component {
 
                   {this.state.hover === movieObj.id && (
                     <div className="add-btn">
-                      <a>AddToFavourite</a>
+                      <a onClick={() => this.handleFavourites(movieObj)}>
+                        {this.state.favourites.includes(movieObj.id)
+                          ? "Remove from fav"
+                          : "Add to favorites"}
+                      </a>
                     </div>
                   )}
                 </div>

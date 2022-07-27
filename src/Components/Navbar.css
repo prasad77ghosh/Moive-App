@@ -1,8 +1,10 @@
 .header {
   width: 100vw;
+  height: 3.5rem;
   display: flex;
   background-color: #261c58;
   align-items: center;
+  gap: 4rem;
   padding: 0.5rem;
   color: #efefef;
   position: sticky;
@@ -10,12 +12,16 @@
   z-index: 1;
 }
 
-.header > * {
-  cursor: pointer;
+.header h4 {
   margin-left: 1rem;
 }
 
-.header > h6 {
-  margin-left: 2rem;
-  margin-top: 13px;
+.header p {
+  margin-top: 1rem;
+}
+
+.header-list {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
 }
