@@ -10,6 +10,8 @@ export default class Favourite extends Component {
       curGen: "All Genres",
       movies: [],
       currSearchText: "",
+      limit: 5,
+      currentPage: 1,
     };
   }
 
@@ -104,6 +106,13 @@ export default class Favourite extends Component {
       movies: [...temp],
     });
   };
+
+  handlePageNum = (page) => {
+    this.setState({
+      currentPage: page,
+    });
+  };
+
   render() {
     let genreids = {
       28: "Action",
@@ -142,6 +151,16 @@ export default class Favourite extends Component {
         (movieObj) => genreids[movieObj.genre_ids[0]] == this.state.curGen
       );
     }
+
+    let numOfPages = Math.ceil(filterArr.length / this.state.limit);
+    let pagesArr = [];
+    for (let i = 1; i <= numOfPages; i++) {
+      pagesArr.push(i); //[1,2]
+    }
+    let si = (this.state.currentPage - 1) * this.state.limit;
+    let ei = si + this.state.limit - 1;
+    filterArr = filterArr.slice(si, ei + 1);
+
     return (
       <>
         <div className="main">
@@ -190,6 +209,8 @@ export default class Favourite extends Component {
                   type="number"
                   className="input-group-text col-5"
                   placeholder="Rows Count"
+                  value={this.state.limit}
+                  onChange={(e) => this.setState({ limit: e.target.value})}
                 />
               </div>
 
@@ -251,31 +272,16 @@ export default class Favourite extends Component {
 
               <nav aria-label="Page navigation example">
                 <ul className="pagination">
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      Previous
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      1
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      2
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      3
-                    </a>
-                  </li>
-                  <li className="page-item">
-                    <a className="page-link" href="#">
-                      Next
-                    </a>
-                  </li>
+                  {pagesArr.map((page) => (
+                    <li class="page-item">
+                      <a
+                        class="page-link"
+                        onClick={() => this.handlePageNum(page)}
+                      >
+                        {page}
+                      </a>
+                    </li>
+                  ))}
                 </ul>
               </nav>
             </div>

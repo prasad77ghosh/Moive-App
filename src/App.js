@@ -24,9 +24,6 @@ const App = () => {
           }
         />
         <Route path="/favourites" element={<Favourite />} />
-        {/* <Banner />
-      <List />
-      <Favourite /> */}
       </Routes>
     </Router>
   );
