@@ -16,18 +16,6 @@ export default class List extends Component {
     };
   }
 
-  async componentDidMount() {
-    let response = await axios.get(
-      `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${this.state.currentPage}`
-    );
-
-    let data = response.data;
-    this.setState({
-      movies: [...data.results],
-    });
-    // console.log(data);
-  }
-
   changeMoives = async () => {
     let response = await axios.get(
       `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${this.state.currentPage}`
@@ -87,9 +75,8 @@ export default class List extends Component {
   };
 
   handleFavourites = (movie) => {
-    let localStorageMovies = JSON.parse(
-      localStorage.getItem("MyFavMoives") || "[]"
-    );
+    let localStorageMovies =
+      JSON.parse(localStorage.getItem("MyFavMoives")) || [];
     if (this.state.favourites.includes(movie.id)) {
       localStorageMovies = localStorageMovies.filter((m) => m.id !== movie.id);
     } else {
@@ -97,12 +84,23 @@ export default class List extends Component {
     }
 
     localStorage.setItem("MyFavMoives", JSON.stringify(localStorageMovies));
-    console.log(localStorageMovies);
+    // console.log(localStorageMovies);
     let temp = localStorageMovies.map((movie) => movie.id);
     this.setState({
       favourites: [...temp],
     });
   };
+
+  async componentDidMount() {
+    let response = await axios.get(
+      `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=en-US&page=${this.state.currentPage}`
+    );
+
+    let data = response.data;
+    this.setState({
+      movies: [...data.results],
+    });
+  }
 
   render() {
     // let movie = movies.results;
@@ -110,12 +108,14 @@ export default class List extends Component {
 
     return (
       <>
+        {/* if no movies found */}
         {this.state.movies.length === 0 ? (
           <div className="container">
             <div className="loader" />
             <h3>Loading...</h3>
           </div>
         ) : (
+          // if movie found...
           <div className="main-list-cont">
             <h2>-- Trending --</h2>
             <div className="list-cont">
@@ -135,11 +135,14 @@ export default class List extends Component {
                   </div>
 
                   {this.state.hover === movieObj.id && (
-                    <div className="add-btn">
-                      <a onClick={() => this.handleFavourites(movieObj)}>
+                    <div
+                      className="add-btn"
+                      onClick={() => this.handleFavourites(movieObj)}
+                    >
+                      <a>
                         {this.state.favourites.includes(movieObj.id)
                           ? "Remove from fav"
-                          : "Add to favorites"}
+                          : "Add to fav"}
                       </a>
                     </div>
                   )}

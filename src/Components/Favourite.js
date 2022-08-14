@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./Favourite.css";
-import { movies } from "./getMovies";
 
 export default class Favourite extends Component {
   constructor() {
@@ -113,6 +112,16 @@ export default class Favourite extends Component {
     });
   };
 
+  handleDelete = (id) => {
+    let newMovies = this.state.movies.filter((movieObj) => {
+      return movieObj.id != id;
+    });
+    this.setState({
+      movies: [...newMovies],
+    });
+    localStorage.setItem("MyFavMoives", JSON.stringify(newMovies));
+  };
+
   render() {
     let genreids = {
       28: "Action",
@@ -210,7 +219,7 @@ export default class Favourite extends Component {
                   className="input-group-text col-5"
                   placeholder="Rows Count"
                   value={this.state.limit}
-                  onChange={(e) => this.setState({ limit: e.target.value})}
+                  onChange={(e) => this.setState({ limit: e.target.value })}
                 />
               </div>
 
@@ -260,7 +269,11 @@ export default class Favourite extends Component {
                         <td>{movieObj.popularity}</td>
                         <td>{movieObj.vote_average}</td>
                         <td>
-                          <button type="button" class="btn btn-danger btn-sm">
+                          <button
+                            type="button"
+                            class="btn btn-danger btn-sm"
+                            onClick={() => this.handleDelete(movieObj.id)}
+                          >
                             Delete
                           </button>
                         </td>

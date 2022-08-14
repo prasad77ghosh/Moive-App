@@ -132,3 +132,30 @@
 .curpage {
   cursor: pointer;
 }
+
+
+
+@media screen and (max-width: 425px){
+  .Item {
+    width: 20rem;
+  }
+}
+
+
+@media screen and (min-width: 426px) and (max-width:767px){
+  .Item {
+    width: 15rem;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1440px) {
+  .Item {
+    width: 19rem;
+  }
+}
+
+@media screen and (max-width: 769) {
+  .Item {
+    width: 22rem;
+  }
+}
